@@ -13,5 +13,6 @@ class Post extends Model
         'title',
         'content',
         'category',
+        'post_image',
     ];
 }
