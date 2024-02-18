@@ -13,7 +13,7 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" enctype="multipart/form-data" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
 
@@ -50,13 +50,13 @@
             @endif
         </div>
 
-        {{--        add an avatar--}}
+        {{--add an avatar--}}
         <div>
-            <x-input-label for="avatar" :value="__('Avatar')"/>
-            <x-file-input id="avatar" name="avatar" class="mt-1 block w-full"
-                          :value="old('avatar', $user->profile_avatar_url)"
-                          required autofocus autocomplete="avatar"/>
-            <x-input-error class="mt-2" :messages="$errors->get('avatar')"/>
+            <x-input-label for="profile_avatar_url" :value="__('Avatar')"/>
+            <x-file-input id="profile_avatar_url" name="profile_avatar_url" class="mt-1 block w-full"
+                          :value="old('profile_avatar_url', $user->profile_avatar_url)"
+                          required autofocus autocomplete="profile_avatar_url"/>
+            <x-input-error class="mt-2" :messages="$errors->get('profile_avatar_url')"/>
         </div>
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>

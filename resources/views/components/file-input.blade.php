@@ -1,9 +1,9 @@
 @props(['id'])
 
-<div {{ $attributes->merge(['class' => 'mt-2']) }}>
+<div {{ $attributes->merge(['class' => 'mt-2 text-gray-700 dark:text-gray-300 bg']) }}>
     <div>
         <label for="{{ $id }}"
-               class="cursor-pointer flex items-center justify-between px-4 py-2 bg-white dark:bg-gray-800 rounded-md border border-gray-300 dark:border-gray-700">
+               class="cursor-pointer flex items-center justify-between px-4 py-2 bg-white border border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
             <span class="truncate">{{ __('Choose a file') }}</span>
             <span
                 class="ml-2 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-gray-700 dark:text-gray-400 bg-gray-200 dark:bg-gray-600 rounded">{{ __('Browse') }}</span>

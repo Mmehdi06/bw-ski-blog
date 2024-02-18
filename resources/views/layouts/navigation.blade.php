@@ -26,9 +26,19 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button
-                            class="inline-flex space-x-3 items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
-                            <img class="h-7 w-7 rounded-full" src="{{Auth::user()->avatar}}">
-                            <div>{{ Auth::user()->name }}</div>
+                            class="inline-flex justify-center items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                            @if(Auth::user()->profile_avatar_url)
+                                <img class="h-8 w-8 rounded-full object-cover mr-3"
+                                     src="{{asset(Auth::user()->profile_avatar_url)}}"
+                                     alt="{{ Auth::user()->name }}"/>
+                            @else
+                                <img class="h-8 w-8 rounded-full object-cover mr-3"
+                                     src="{{URL('https://www.gravatar.com/avatar/' . md5('some_string') . '.jpg?s=200&d=mp')}}"
+                                     alt="{{ Auth::user()->name }}"/>
+                            @endif
+                            <div>
+                                {{ Auth::user()->name ?? '' }}
+                            </div>
 
                             <div class="ms-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
@@ -87,8 +97,17 @@
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
             <div class="px-4">
-                <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                @if(Auth::user()->profile_avatar_url)
+                    <img class="h-8 w-8 rounded-full object-cover mr-3"
+                         src="{{asset(Auth::user()->profile_avatar_url)}}"
+                         alt="{{ Auth::user()->name }}"/>
+                @else
+                    <img class="h-8 w-8 rounded-full object-cover mr-3"
+                         src="{{URL('https://www.gravatar.com/avatar/' . md5('some_string') . '.jpg?s=200&d=mp')}}"
+                         alt="{{ Auth::user()->name }}"/>
+                @endif
+                <div class="font-medium text-base text-gray-800 dark:text-gray-200">{{ Auth::user()->name ?? '' }}</div>
+                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email ?? '' }}</div>
             </div>
 
             <div class="mt-3 space-y-1">

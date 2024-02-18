@@ -42,25 +42,25 @@
     <div class="dark:bg-gray-800 bg-neutral-200 py-24 sm:py-10 rounded-2xl">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="mx-auto max-w-2xl lg:mx-0">
-                <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Recently Posted</h2>
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Recent Blog Posts</h2>
                 <p class="mt-2 text-lg leading-8 text-gray-600 dark:text-gray-300">Here are some of the recent
-                    articles</p>
+                    articles. Log in to see more...</p>
             </div>
             <div
                 class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3 border-white">
 
                 @foreach($posts as $post)
                     <article
-                        class="flex max-w-xl flex-col py-3 items-start justify-between border-y-2 border-gray-500 ">
+                        class="flex p-6 max-w-xl flex-col py-3 items-start justify-between hover:shadow-2xl shadow-md s dark:bg-gray-700 rounded-2xl">
                         <div class="flex items-center gap-x-4 text-xs ">
                             <time datetime="{{$post->created_at}}"
                                   class="text-gray-500 dark:text-gray-400">{{$post->created_at->format('M d, Y')}}</time>
-                            <a href="#"
-                               class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-800 px-3 py-1.5 font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">{{$post->category}}</a>
+                            <a href=""
+                               class="relative z-10 rounded-full bg-gray-50 dark:bg-gray-600 px-3 py-1.5 font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 ">{{$post->category}}</a>
                         </div>
-                        <div class="group relative">
-                            <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 dark:text-white group-hover:text-gray-600 dark:group-hover:text-gray-400">
-                                <a href="#">
+                        <div class="relative">
+                            <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-400">
+                                <a href="{{ route('post.show', $post->id) }}">
                                     <span class=>{{$post->title}}</span>
                                 </a>
                             </h3>
