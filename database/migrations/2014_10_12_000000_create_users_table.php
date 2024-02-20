@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('profile_avatar_url')->default('https://www.gravatar.com/avatar/' . md5('some_string') . '.jpg?s=200&d=mp');
+            $table->date('date_of_birth')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

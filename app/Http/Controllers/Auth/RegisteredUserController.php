@@ -27,6 +27,7 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'profile_avatar_url' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'date_of_birth' => ['nullable', 'date'],
         ]);
 
         $user = User::create([

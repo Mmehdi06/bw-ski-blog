@@ -19,6 +19,7 @@ class ProfileUpdateRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
             'profile_avatar_url' => ['nullable', 'file', 'mimes:jpeg,png,jpg,gif,svg', 'max:3072'],
+            'date_of_birth' => ['nullable', 'date'],
         ];
     }
 }

@@ -16,14 +16,14 @@
     <form method="post" enctype="multipart/form-data" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
-
+        {{--add name--}}
         <div>
             <x-input-label for="name" :value="__('Name')"/>
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)"
                           required autofocus autocomplete="name"/>
             <x-input-error class="mt-2" :messages="$errors->get('name')"/>
         </div>
-
+        {{--add email--}}
         <div>
             <x-input-label for="email" :value="__('Email')"/>
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full"
@@ -57,6 +57,13 @@
                           :value="old('profile_avatar_url', $user->profile_avatar_url)"
                           required autofocus autocomplete="profile_avatar_url"/>
             <x-input-error class="mt-2" :messages="$errors->get('profile_avatar_url')"/>
+        </div>
+        {{--add DOB--}}
+        <div>
+            <x-input-label for="date_of_birth" :value="__('Date of Birth')"/>
+            <x-text-input id="date_of_birth" name="date_of_birth" type="date" class="mt-1 block w-full"
+                          :value="old('date_of_birth', $user->date_of_birth)" required autocomplete="date_of_birth"/>
+            <x-input-error class="mt-2" :messages="$errors->get('date_of_birth')"/>
         </div>
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
