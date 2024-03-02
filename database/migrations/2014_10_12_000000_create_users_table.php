@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->string('password');
             $table->string('profile_avatar_url')->default('https://www.gravatar.com/avatar/' . md5('some_string') . '.jpg?s=200&d=mp');
             $table->date('date_of_birth')->nullable();
+            $table->boolean('is_admin')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

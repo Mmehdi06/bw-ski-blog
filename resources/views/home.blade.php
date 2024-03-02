@@ -51,7 +51,7 @@
 
                 @foreach($posts as $post)
                     <article
-                        class="flex p-6 max-w-xl flex-col py-3 items-start justify-between hover:shadow-2xl shadow-md s dark:bg-gray-700 rounded-2xl">
+                        class="flex p-6 max-w-xl flex-col py-3 items-start justify-between hover:shadow-2xl shadow-md bg-gray-100 dark:bg-gray-700 rounded-2xl">
                         <div class="flex items-center gap-x-4 text-xs ">
                             <time datetime="{{$post->created_at}}"
                                   class="text-gray-500 dark:text-gray-400">{{$post->created_at->format('M d, Y')}}</time>

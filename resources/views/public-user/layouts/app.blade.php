@@ -17,7 +17,7 @@
 <body class="font-sans antialiased">
 <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
     @if(\Illuminate\Support\Facades\Auth::user())
-        @include('layouts.navigation')
+        @include('public-user.layouts.navigation')
     @else
         <a href="/" class="flex justify-center items-center gap-3 absolute top-0 left-0 p-6">
             <img src="{{URL('/images/ski-logo.png')}}" alt="Ski Blog Logo" class="h-12 w-12">

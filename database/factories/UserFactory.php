@@ -30,6 +30,7 @@ class UserFactory extends Factory
             'password' => static::$password ??= Hash::make('password'),
             'profile_avatar_url' => 'https://www.gravatar.com/avatar/' . md5(fake()->unique()->safeEmail()) . '.jpg?s=200&d=mp',
             'date_of_birth' => fake()->date(),
+            'is_admin' => false,
             'remember_token' => Str::random(10),
         ];
     }
