@@ -57,11 +57,11 @@
                         </x-dropdown-link>
                         @if(Auth::user()->is_admin)
                             <x-dropdown-link :href="route('users.index')">
-                                {{ __('Users') }}
+                                {{ __('Manage Users') }}
                             </x-dropdown-link>
 
                             <x-dropdown-link :href="route('posts.index')">
-                                {{ __('Posts') }}
+                                {{ __('Create Post') }}
                             </x-dropdown-link>
 
                         @endif
@@ -127,7 +127,11 @@
                 </x-responsive-nav-link>
                 @if(Auth::user()->is_admin)
                     <x-responsive-nav-link :href="route('users.index')">
-                        {{ __('users') }}
+                        {{ __('Manage Users') }}
+                    </x-responsive-nav-link>
+
+                    <x-responsive-nav-link :href="route('posts.index')">
+                        {{ __('Create Post') }}
                     </x-responsive-nav-link>
                 @endif
 

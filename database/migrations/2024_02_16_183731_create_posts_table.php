@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('title');
             $table->text('content');
             $table->string('category')->default('general');
-            $table->string('post_image')->nullable();
+            $table->string('post_image')->default('/images/default.png');
             $table->timestamps();
         });
     }

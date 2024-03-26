@@ -10,8 +10,6 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-6">
                 @foreach($posts as $post)
                     <div
-                        @dd($post)
-
                         class="bg-white dark:bg-gray-800 overflow-hidden shadow-md sm:rounded-lg hover:shadow-2xl transition ">
                         <div class="p-6 text-gray-900 dark:text-gray-100 space-y-6">
                             <x-post-card :post="$post"/>

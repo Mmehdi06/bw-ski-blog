@@ -9,7 +9,9 @@ class DashboardController extends Controller
     //
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::query()
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         return view('dashboard', compact('posts'));
     }

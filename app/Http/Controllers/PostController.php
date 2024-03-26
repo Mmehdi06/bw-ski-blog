@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\Request;
 
 
 class PostController extends Controller
@@ -16,13 +17,12 @@ class PostController extends Controller
         return view('posts.post', compact('post'));
     }
 
-    // Show all posts for an admin to add, edit, delete
+    // Show Create post page
     public function show(): View
     {
-        $posts = Post::all();
-
-        return view('admin.posts.index', compact('posts'));
+        return view('admin.posts.index');
     }
+
 
     // Edit a post
     public function edit(Post $post): View
@@ -30,6 +30,7 @@ class PostController extends Controller
         return view('admin.posts.edit', compact('post'));
     }
 
+    // Delete a post
     public function destroy(Post $post)
     {
         $post->delete();
@@ -37,20 +38,29 @@ class PostController extends Controller
         return redirect()->route('posts.index');
     }
 
-    public function store()
+    // Create a new post
+    public function store(Request $request)
     {
-        $data = request()->validate([
+        $data = $request->validate([
             'title' => 'required',
             'content' => 'required',
         ]);
 
         Post::create($data);
 
-        return redirect()->route('posts.index');
+        return redirect()->route('dashboard');
     }
 
-    public function create(): View
+    // Update a post
+    public function update(Post $post)
     {
-        return view('admin.posts.create');
+        $data = request()->validate([
+            'title' => 'required',
+            'content' => 'required',
+        ]);
+
+        $post->update($data);
+
+        return redirect()->route('posts.index');
     }
 }

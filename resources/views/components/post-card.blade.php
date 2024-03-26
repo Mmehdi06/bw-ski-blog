@@ -1,5 +1,11 @@
 @props(['post'])
 
+{{--format created_at date--}}
+@php
+    $date = new DateTime($post->created_at);
+    $formattedDate = $date->format('d-m-Y');
+@endphp
+
 <article class="overflow-hidden rounded-lg">
     <a href="{{ route('post.show', $post->id) }}">
 
@@ -11,8 +17,8 @@
 
 
         <div class="bg-white dark:bg-gray-800 p-4 sm:p-6">
-            <time datetime="{{ $post->updated_at }}"
-                  class="block dark:text-gray-500 text-xs text-gray-500">{{$post->updated_at }}</time>
+            <time datetime="{{$formattedDate}}"
+                  class="block dark:text-gray-500 text-xs text-gray-500">{{$formattedDate}}</time>
 
 
             <h3 class="mt-0.5 font-bold text-lg text-gray-900 dark:text-white">{{ $post->title }}</h3>
