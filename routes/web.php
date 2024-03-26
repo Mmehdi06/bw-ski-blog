@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -47,8 +48,8 @@ Route::middleware('admin')->controller(AdminController::class)->group(function (
     Route::get('/users', 'show')->name('users.index');
     Route::post('/users/{user}/promote', 'promote')->name('users.promote');
     Route::delete('/users/{user}/delete', 'destroy')->name('users.delete');
-    Route::post('users/create', 'create')->name('users.createUser');
-    Route::get('users/create', 'create')->name('users.createPage');
+    Route::post('/users/store', 'store')->name('users.store');
+    Route::get('/users/create', 'create')->name('users.create');
 });
 
 require __DIR__ . '/auth.php';
