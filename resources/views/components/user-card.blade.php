@@ -1,6 +1,6 @@
 @props(['user'])
 
-<div>
+<article>
     <article class=" rounded-lg">
         <img
             alt=""
@@ -69,4 +69,4 @@
             </div>
         @endif
     </article>
-</div>
+</article>

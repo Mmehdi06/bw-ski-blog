@@ -41,15 +41,26 @@ Route::middleware('auth')->group(function () {
 });
 
 //Routes for posts
-Route::get('/posts/{id}', [PostController::class, 'show'])->name('post.show');
+Route::get('/posts/{id}', [PostController::class, 'showById'])->name('post.show');
 
 //Routes for admins
-Route::middleware('admin')->controller(AdminController::class)->group(function () {
-    Route::get('/users', 'show')->name('users.index');
-    Route::post('/users/{user}/promote', 'promote')->name('users.promote');
-    Route::delete('/users/{user}/delete', 'destroy')->name('users.delete');
-    Route::post('/users/store', 'store')->name('users.store');
-    Route::get('/users/create', 'create')->name('users.create');
+Route::middleware('admin')->group(function () {
+
+    Route::prefix('/users')->name('users.')->controller(AdminController::class)->group(function () {
+        Route::get('/', 'show')->name('index');
+        Route::post('/{user}/promote', 'promote')->name('promote');
+        Route::delete('/{user}/delete', 'destroy')->name('delete');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/create', 'create')->name('create');
+    });
+
+    Route::prefix('/posts')->name('posts.')->controller(PostController::class)->group(function () {
+        Route::get('/', 'show')->name('index');
+        Route::get('/{post}/edit', 'edit')->name('edit');
+        Route::delete('/{post}/delete', 'destroy')->name('delete');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/create', 'create')->name('create');
+    });
 });
 
 require __DIR__ . '/auth.php';

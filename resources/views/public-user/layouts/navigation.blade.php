@@ -59,6 +59,11 @@
                             <x-dropdown-link :href="route('users.index')">
                                 {{ __('Users') }}
                             </x-dropdown-link>
+
+                            <x-dropdown-link :href="route('posts.index')">
+                                {{ __('Posts') }}
+                            </x-dropdown-link>
+
                         @endif
 
                         <!-- Authentication -->
