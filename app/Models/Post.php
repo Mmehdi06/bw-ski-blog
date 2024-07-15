@@ -15,4 +15,9 @@ class Post extends Model
         'category',
         'post_image',
     ];
+
+    public function user()
+    {
+       return $this->belongsTo(User::class);
+    }
 }

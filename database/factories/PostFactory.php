@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,10 +18,12 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
+
             'title' => $this->faker->sentence(),
             'content' => $this->faker->paragraph(),
             'category' => $this->faker->randomElement(['news', 'blog', 'press']),
             'post_image' => $this->faker->imageUrl(),
+            'user_id' => $this->faker->numberBetween(1, 10),
         ];
     }
 }

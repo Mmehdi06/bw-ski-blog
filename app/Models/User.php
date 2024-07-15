@@ -24,6 +24,7 @@ class User extends Authenticatable
         'is_admin',
         'profile_avatar_url',
         'date_of_birth',
+        'bio',
     ];
 
     /**
@@ -49,5 +50,10 @@ class User extends Authenticatable
     public function isAdmin(): bool
     {
         return $this->is_admin;
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
     }
 }
