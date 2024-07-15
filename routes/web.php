@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/profile/{user}', [ProfileController::class, 'show'])->name('profile.show');
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
 
 //Routes for visitors
 Route::middleware('guest')->group(function () {

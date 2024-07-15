@@ -27,6 +27,10 @@
             <p class="mt-2 line-clamp-3  text-sm/relaxed text-gray-500 dark:text-gray-200">
                 {{ $post->content }}
             </p>
+
+            <a href="{{ route('profile.show', $post->user) }}" class="mt-2 line-clamp-3 text-sm/relaxed text-gray-500 font-bold hover:font-extrabold hover:text-blue-500 dark:text-gray-200">
+                {{ $post->user->name }}
+            </a>
         </div>
     </a>
     @if(auth()->user()->is_admin)

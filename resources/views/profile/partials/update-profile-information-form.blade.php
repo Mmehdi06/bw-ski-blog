@@ -55,16 +55,26 @@
             <x-input-label for="profile_avatar_url" :value="__('Avatar')"/>
             <x-file-input id="profile_avatar_url" name="profile_avatar_url" class="mt-1 block w-full"
                           :value="old('profile_avatar_url', $user->profile_avatar_url)"
-                          required autofocus autocomplete="profile_avatar_url"/>
+                          autofocus autocomplete="profile_avatar_url"/>
             <x-input-error class="mt-2" :messages="$errors->get('profile_avatar_url')"/>
         </div>
         {{--add DOB--}}
         <div>
             <x-input-label for="date_of_birth" :value="__('Date of Birth')"/>
             <x-text-input id="date_of_birth" name="date_of_birth" type="date" class="mt-1 block w-full"
-                          :value="old('date_of_birth', $user->date_of_birth)" required autocomplete="date_of_birth"/>
+                          :value="old('date_of_birth', $user->date_of_birth)" autocomplete="date_of_birth"/>
             <x-input-error class="mt-2" :messages="$errors->get('date_of_birth')"/>
         </div>
+
+        {{--add bio--}}
+        <div>
+            <x-input-label for="bio" :value="__('Bio')"/>
+            <x-text-area id="bio" name="bio" class="mt-1 block w-full"
+                         :value="old('bio', $user->bio)" autocomplete="bio"/>
+            <x-input-error class="mt-2" :messages="$errors->get('bio')"/>
+        </div>
+
+
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 
