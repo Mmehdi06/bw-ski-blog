@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -23,7 +23,6 @@ class PostController extends Controller
         return view('admin.posts.index');
     }
 
-
     // Edit a post
     public function edit(Post $post): View
     {
@@ -39,28 +38,50 @@ class PostController extends Controller
     }
 
     // Create a new post
-    public function store(Request $request)
+
+    public function update(Request $request, Post $post)
     {
         $data = $request->validate([
-            'title' => 'required',
-            'content' => 'required',
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
         ]);
 
-        Post::create($data);
-
-        return redirect()->route('dashboard');
-    }
-
-    // Update a post
-    public function update(Post $post)
-    {
-        $data = request()->validate([
-            'title' => 'required',
-            'content' => 'required',
-        ]);
+        // Handle the file upload if a new post_image is uploaded
+        if ($request->hasFile('post_image')) {
+            // Delete the old post_image if it exists
+            if ($post->post_image) {
+                Storage::disk('public')->delete($post->post_image);
+            }
+            $data['post_image'] = $request->file('post_image')->store('post_images', 'public');
+        }
 
         $post->update($data);
 
         return redirect()->route('posts.index');
     }
+
+    // Update a post
+
+    public function store(Request $request)
+    {
+        $data = $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'post_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        // Handle the file upload and store the path
+        if ($request->hasFile('post_image')) {
+            $post_imagePath = $request->file('post_image')->store('post_images', 'public');
+            $data['post_image'] = $post_imagePath;
+        }
+
+        // Add userId to the post for foreign key
+        $data['user_id'] = \Auth::user()->id;
+
+        Post::create($data);
+
+        return redirect()->route('dashboard')->with('status', 'post-created');
+    }
+
 }

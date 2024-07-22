@@ -45,7 +45,7 @@ class ProfileController extends Controller
         }
 
         if ($request->hasFile('profile_avatar_url')) {
-            $request->user()->profile_avatar_url = $request->file('profile_avatar_url')->storePublicly('avatars');
+            $request->user()->profile_avatar_url = $request->file('profile_avatar_url')->store('avatars', 'public');
         }
 
 

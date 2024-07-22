@@ -4,28 +4,40 @@
             {{ __('Create Post') }}
         </h2>
 
-        <p class="mt-1 mb-5 text-sm text-gray-600 dark:text-gray-400">
+        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
             {{ __("Create a post and save it.") }}
         </p>
     </header>
 
-    {{--    Edit Post Title--}}
-    <div class="grid grid-cols-1 gap-6">
-        <label for="title" class="block">
-            <span class="text-gray-700 dark:text-gray-300">{{ __('Title') }}</span>
-            <input type="text" name="title" id="title"
-                   class="mt-1 block w-full rounded-md dark:bg-gray-700 dark:text-gray-300 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
-        </label>
-    </div>
+    <form method="post" enctype="multipart/form-data" action="{{ route('posts.store') }}" class="mt-6 space-y-6">
+        @csrf
 
-    {{--    Edit Post Content--}}
-    <div class="grid grid-cols-1 gap-6">
-        <label for="content" class="block">
-            <span class="text-gray-700 dark:text-gray-300">{{ __('Content') }}</span>
-            <textarea name="content" id="content" rows="10"
-                      class="mt-1 block w-full rounded-md dark:bg-gray-700 dark:text-gray-300 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0"></textarea>
-        </label>
-    </div>
+        {{-- Post Cover image--}}
+        <div>
+            <x-input-label for="post_image" :value="__('Post post_image')"/>
+            <x-file-input id="post_image" name="post_image" class="mt-1 block w-full" autofocus
+                          autocomplete="post_image"/>
+            <x-input-error class="mt-2" :messages="$errors->get('post_image')"/>
+        </div>
 
+        {{-- Post Title --}}
+        <div>
+            <x-input-label for="title" :value="__('Title')"/>
+            <x-text-input id="title" name="title" type="text" class="mt-1 block w-full" :value="old('title')"
+                          required autofocus autocomplete="title"/>
+            <x-input-error class="mt-2" :messages="$errors->get('title')"/>
+        </div>
 
+        {{-- Post Content --}}
+        <div>
+            <x-input-label for="content" :value="__('Content')"/>
+            <x-text-area id="content" name="content" rows="10" class="mt-1 block w-full" :value="old('content')"
+                         required autofocus autocomplete="content"/>
+            <x-input-error class="mt-2" :messages="$errors->get('content')"/>
+        </div>
+
+        <div>
+            <x-primary-button type="submit">Create</x-primary-button>
+        </div>
+    </form>
 </section>

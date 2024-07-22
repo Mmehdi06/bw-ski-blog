@@ -37,6 +37,15 @@ Route::middleware('auth')->group(function () {
         Route::delete('/', 'destroy')->name('destroy');
     });
 
+    Route::prefix('/posts')->name('posts.')->controller(PostController::class)->group(function () {
+        Route::get('/', 'show')->name('index');
+        Route::get('/{post}/edit', 'edit')->name('edit');
+        Route::post('/{post}/edit', 'update')->name('update');
+        Route::delete('/{post}/delete', 'destroy')->name('delete');
+        Route::post('/store', 'store')->name('store');
+    });
+
+
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/about', function () {
